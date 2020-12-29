@@ -1,13 +1,13 @@
 # Just
 
+## Installation
+
+```shell
+npm i -g @musicq/just
+```
+
 ## Usage
 
 ```shell
-just <command> --<options>=<val>
-
-just version
-just help
-just generate library:react
-
-just g lib:react
+just
 ```

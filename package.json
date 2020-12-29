@@ -8,7 +8,8 @@
     "just": "./dist/bin/cli.js"
   },
   "scripts": {
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "build": "bash ./scripts/build.sh"
   },
   "repository": {
     "type": "git",
