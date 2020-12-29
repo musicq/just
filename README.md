@@ -10,4 +10,8 @@ npm i -g @musicq/just
 
 ```shell
 just
+
+just generate react:library
+# or
+just g react:library
 ```
