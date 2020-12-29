@@ -1,5 +1,5 @@
 {
-  "name": "{{projectName}}",
+  "name": "{{libraryName}}",
   "version": "1.0.0",
   "license": "MIT",
   "peerDependencies": {

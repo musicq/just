@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "incremental": true,
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
@@ -12,12 +11,15 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": [
+    "templates",
+    "dist"
+  ]
 }

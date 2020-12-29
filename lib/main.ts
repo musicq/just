@@ -14,15 +14,13 @@ export function main(...args: [Command?, ...string[]]) {
   switch (command) {
     case 'generate':
     case 'g':
-      generate()
-      break
+      return generate(options)
     case 'version':
-      version()
-      break
+      return version()
     case 'help':
-      help()
-      break
+      return help()
     default:
       console.log(`Command ${command} not found.`)
+      return help()
   }
 }

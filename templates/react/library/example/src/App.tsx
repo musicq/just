@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button} from '{{projectName}}'
+import {Button} from '{{libraryName}}'
 import './style.scss'
 
 export function App() {
