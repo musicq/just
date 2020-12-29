@@ -73,11 +73,11 @@ async function installDependencies(libraryPath: string) {
       stdio: ['inherit', 'inherit', 'inherit'],
     })
 
-    child.stdout?.on('data', buffer => {
+    child.stdout?.on('data', (buffer: any) => {
       process.stdout.write(buffer)
     })
 
-    child.on('close', code => {
+    child.on('close', (code: number) => {
       if (code !== 0) {
         console.log(`installation failed.`)
         return reject()
