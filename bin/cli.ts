@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import {main} from '../src/main'
+import {main} from '../lib/main'
 
 const [, , ...args] = process.argv
 
-main(...args)
+main(...args as any)
