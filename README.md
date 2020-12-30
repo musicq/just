@@ -15,9 +15,13 @@ npm i -g @musicq/just
 
   Usage: just <command> <options>
 
-  generate      generate a template
-  version       show just version
-  help          print help messages
+  Or you can use j for shortcut
+
+  Commands
+
+  generate g        Generate projects template
+  version           Show version info
+  help              Print help message
 ```
 
 ## Command
