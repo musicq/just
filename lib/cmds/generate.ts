@@ -2,7 +2,7 @@ import path from 'path'
 import copy from 'recursive-copy'
 import chalk from 'chalk'
 import {keepAskingIfAnswerIsInValid} from '../raiseQuestion'
-import {go} from '../utils'
+import {composeListText, go} from '../utils'
 import {execCommand} from '../execCommand'
 
 const replaceInFiles = require('replace-in-files')
@@ -27,9 +27,13 @@ export async function generate(options: string[]) {
     !Categories.includes(category) ||
     !Types.includes(type)
   ) {
-    console.log(
-      `\n${chalk.bold(chalk.red(projectInfo))} is not a valid project type.`
-    )
+    if (projectInfo) {
+      console.log(
+        `\n${chalk.bold(chalk.red(projectInfo))} is not a valid project type.`
+      )
+    }
+
+    printGenerateHelpText()
     return 0
   }
 
@@ -140,4 +144,16 @@ function printDoneMessage(libraryName: string, pm: PackageManager) {
   ${chalk.grey('# use build command to build your library')}
   ${pm} build
   `)
+}
+
+function printGenerateHelpText() {
+  const cmdsText = composeListText([
+    {cmd: 'react:library', desc: 'Generate react library template'},
+  ])
+
+  console.log(`
+${chalk.bold('Types')}
+
+${cmdsText}
+`)
 }
