@@ -1,7 +1,7 @@
 {
   "name": "@musicq/just",
   "description": "A CLI to generate templates of projects.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "author": "musicq",
   "main": "./lib/main.js",
