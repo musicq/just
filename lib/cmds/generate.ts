@@ -1,5 +1,6 @@
 import path from 'path'
 import copy from 'recursive-copy'
+import chalk from 'chalk'
 import {keepAskingIfAnswerIsInValid} from '../raiseQuestion'
 import {go} from '../utils'
 import {execCommand} from '../execCommand'
@@ -26,7 +27,9 @@ export async function generate(options: string[]) {
     !Categories.includes(category) ||
     !Types.includes(type)
   ) {
-    console.log(`"${projectInfo}" is not a valid project type.`)
+    console.log(
+      `\n${chalk.bold(chalk.red(projectInfo))} is not a valid project type.`
+    )
     return 0
   }
 
@@ -67,11 +70,11 @@ async function askForPackageManager() {
 }
 
 async function askForIfInitGitRepo() {
-  return keepAskingIfAnswerIsInValid<PackageManager>(
+  return keepAskingIfAnswerIsInValid(
     'Would you like to init the git repo (y/n)',
     'Please specify y or n',
     answer => answer === 'y' || answer === 'n'
-  )
+  ).then(answer => answer === 'y')
 }
 
 async function copyTemplatesToPath(
@@ -101,11 +104,15 @@ async function installDependencies(
   libraryPath: string,
   pm: PackageManager
 ): Promise<number> {
+  console.log(`\n${chalk.green('Installing dependencies...')}\n`)
+
   const args = pm === 'npm' ? ['install'] : ['']
   return execCommand(pm, args, {cwd: libraryPath})
 }
 
 async function initGitRepo(libraryPath: string) {
+  console.log(`\n${chalk.green('Initializing git repository...')}\n`)
+
   let [, e1] = await go(execCommand('git', ['init'], {cwd: libraryPath}))
   if (e1 !== null) return 1
 
@@ -122,14 +129,15 @@ async function initGitRepo(libraryPath: string) {
 
 function printDoneMessage(libraryName: string, pm: PackageManager) {
   console.log(`
-  All things are done.
   
-  You can now play with it.
+  ${chalk.green('🎉 All things are done.')}
+  
+  You can play with it now.
   
   cd ${libraryName}
   ${pm} start
   
-  # use build command to build your library
+  ${chalk.grey('# use build command to build your library')}
   ${pm} build
   `)
 }

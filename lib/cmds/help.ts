@@ -1,10 +1,14 @@
+import chalk from 'chalk'
+
 export async function help() {
   console.log(`
   Usage: just <command> <options>
   
-  generate      generate a template
-  version       show just version
-  help          print help messages
+  ${chalk.grey(`Or you can use ${chalk.yellow('j')} for shortcut`)}
+  
+  ${chalk.bold('generate')} g       Generate projects template
+  ${chalk.bold('version')}          Show version info
+  ${chalk.bold('help')}             Print help message
   `)
 
   return 0
