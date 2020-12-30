@@ -5,3 +5,6 @@ dist
 node_modules
 
 *.log
+
+*.js
+*.map

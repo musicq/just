@@ -1,4 +1,7 @@
-export function version() {
-  console.log(` just version 1.0.0 `)
-  process.exit(0)
+import packageJSON from '../../package.json'
+
+export async function version() {
+  console.log(` just version ${packageJSON.version}`)
+
+  return 0
 }

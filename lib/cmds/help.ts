@@ -1,4 +1,4 @@
-export function help() {
+export async function help() {
   console.log(`
   Usage: just <command> <options>
   
@@ -7,5 +7,5 @@ export function help() {
   help          print help messages
   `)
 
-  process.exit(0)
+  return 0
 }
