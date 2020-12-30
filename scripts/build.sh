@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 
-# clean dist
-rm -rf dist
+rm -rf ./bin/*.js
+rm -rf ./bin/*.js.map
+rm -rf ./lib/**/*.js
+rm -rf ./lib/**/*.js.map
 
 # build
-tsc
-
-# copy templates into dist directory
-cp -r templates dist
-
-# copy extra files
-cp LICENSE dist
-cp README.md dist
+tsc --build tsconfig.json

@@ -19,8 +19,8 @@
     "url": "git+https://github.com/musicq/just.git"
   },
   "files": [
-    "*.js",
-    "*.map",
+    "bin/*.js",
+    "lib/**/*.js",
     "templates"
   ],
   "devDependencies": {
