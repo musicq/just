@@ -18,6 +18,11 @@
     "type": "git",
     "url": "git+https://github.com/musicq/just.git"
   },
+  "keywords": [
+    "react",
+    "react library",
+    "cli"
+  ],
   "files": [
     "bin/*.js",
     "lib/**/*.js",
