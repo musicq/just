@@ -1,10 +1,10 @@
 import path from 'path'
-import copy from 'recursive-copy'
 import chalk from 'chalk'
 import {keepAskingIfAnswerIsInValid} from '../raiseQuestion'
 import {composeListText, go} from '../utils'
 import {execCommand} from '../execCommand'
 
+const download = require('download-git-repo')
 const replaceInFiles = require('replace-in-files')
 
 const Categories = ['react']
@@ -14,9 +14,6 @@ const SupportedPackageManager = ['yarn', 'npm']
 type Category = 'react'
 type Type = 'library'
 type PackageManager = 'yarn' | 'npm'
-
-const useTemplateDir = (...paths: string[]) =>
-  path.resolve(__dirname, '../../templates', ...paths)
 
 export async function generate(options: string[]) {
   const projectInfo = options[0] ?? ''
@@ -42,7 +39,9 @@ export async function generate(options: string[]) {
   const isInitGitRepo = await askForIfInitGitRepo()
   const libraryPath = path.resolve(process.cwd(), libraryName)
 
-  await copyTemplatesToPath(category, type, libraryPath)
+  let [, e0] = await go(copyTemplatesToPath(libraryPath))
+  if (e0 !== null) return 1
+
   await replacePlaceholdersInTemplate(libraryPath, libraryName)
 
   if (isInitGitRepo) {
@@ -81,15 +80,17 @@ async function askForIfInitGitRepo() {
   ).then(answer => answer === 'y')
 }
 
-async function copyTemplatesToPath(
-  category: string,
-  type: string,
-  dest: string
-) {
-  const src = useTemplateDir(category, type)
-  return copy(src, dest, {
-    dot: true,
-    junk: false,
+async function copyTemplatesToPath(dest: string) {
+  return new Promise((resolve, reject) => {
+    download('musicq/just-react-library-template#main', dest, (err: any) => {
+      if (err) {
+        console.error(err)
+        return reject(1)
+      }
+
+      console.log(chalk.green('\nTemplate is downloaded.'))
+      return resolve(0)
+    })
   })
 }
 
